@@ -1,0 +1,42 @@
+{
+    "name": "sourecode/action-bundle",
+    "type": "symfony-bundle",
+    "description": "Integrates the action component into symfony",
+    "keywords": ["symfony", "action", "workflow", "pipeline"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jason Schilling",
+            "email": "jason@sourecode.dev"
+        }
+    ],
+    "require": {
+        "php": ">=8.0",
+        "symfony/http-kernel": "^5.3 || ^6.0",
+        "symfony/dependency-injection": "^5.3 || ^6.0",
+        "symfony/config": "^5.3 || ^6.0",
+        "symfony/console": "^5.3 || ^6.0",
+        "sourecode/action": "dev-master"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "SoureCode\\Bundle\\Action\\": "src"
+        },
+        "exclude-from-classmap": [
+            "/tests/"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SoureCode\\Bundle\\Action\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    },
+    "minimum-stability": "dev"
+}

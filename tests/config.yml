@@ -1,0 +1,27 @@
+soure_code_action:
+    actions:
+        files:
+            jobs:
+                collect:
+                    tasks:
+                        collect:
+                            command: ls
+                            output: collected
+                        filter:
+                            command: grep composer
+                            output: filtered
+                            input: collected
+                print:
+                    needs: [ collect ]
+                    tasks:
+                        print:
+                            command: xargs -n 1
+                            input: filtered
+                            output: console
+                prefixed:
+                    needs: [ collect ]
+                    tasks:
+                        print:
+                            command: xargs -I {} -n 1 sh -c 'echo prefix_{}'
+                            input: filtered
+                            output: console

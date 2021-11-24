@@ -31,6 +31,8 @@ class SoureCodeActionExtension extends Extension
 
         $loader->load('services.php');
 
+        $container->setParameter('soure_code.action.daemons', $config['daemons']);
+
         $commandDefinition = $container->getDefinition('soure_code.action.action_definitions');
         $commandDefinition->setArgument('$actions', $config['actions']);
     }

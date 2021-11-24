@@ -27,7 +27,17 @@ class Configuration implements ConfigurationInterface
 
         $children = $rootNode
             ->fixXmlConfig('action')
+            ->fixXmlConfig('daemon')
             ->children();
+
+        $daemonNode = $children
+            ->arrayNode('daemons')
+            ->useAttributeAsKey('name')
+            ->arrayPrototype();
+
+        $daemonNode->children()
+            ->scalarNode('command')
+            ->isRequired();
 
         $actionNode = $children
             ->arrayNode('actions')

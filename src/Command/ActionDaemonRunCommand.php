@@ -67,7 +67,7 @@ class ActionDaemonRunCommand extends AbstractActionDaemonCommand
         $process->start();
 
         $pid = $process->getPid();
-        $this->filesystem->dumpFile($pidFilepath, $pid);
+        $this->filesystem->dumpFile($pidFilepath, (string) $pid);
 
         $stdout = $this->getLogsStdoutFilepath($daemonName);
         $stderr = $this->getLogsErroutFilepath($daemonName);

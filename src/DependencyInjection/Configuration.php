@@ -27,17 +27,7 @@ class Configuration implements ConfigurationInterface
 
         $children = $rootNode
             ->fixXmlConfig('action')
-            ->fixXmlConfig('daemon')
             ->children();
-
-        $daemonNode = $children
-            ->arrayNode('daemons')
-            ->useAttributeAsKey('name')
-            ->arrayPrototype();
-
-        $daemonNode->children()
-            ->scalarNode('command')
-            ->isRequired();
 
         $actionNode = $children
             ->arrayNode('actions')
@@ -71,16 +61,12 @@ class Configuration implements ConfigurationInterface
 
         $tasksNode = $jobsChildren
             ->arrayNode('tasks')
+            ->useAttributeAsKey('name')
             ->arrayPrototype();
 
         $tasksChildren = $tasksNode
             ->addDefaultsIfNotSet()
             ->children();
-
-        $tasksChildren->enumNode('type')
-            ->cannotBeEmpty()
-            ->defaultValue('process')
-            ->values(['process', 'console']);
 
         $tasksChildren->scalarNode('command')
             ->isRequired()

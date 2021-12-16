@@ -21,7 +21,7 @@ use SoureCode\Component\Action\TaskDefinition;
 class ActionDefinitionsListFactory
 {
     /**
-     * @param array<string, array{needs: list<string>, jobs: array<string, array{needs: list<string>, continue_on_error: bool, tasks: array<string, array{command: string, continue_on_error: bool, input: string, output: string, directory: string}>}>}> $actions
+     * @param array<string, array{needs: list<string>, jobs: array<string, array{needs: list<string>, continue_on_error: bool, tasks: array<string, array{command: string, continue_on_error: bool, inputs: list<string>, output: string, directory: string}>}>}> $actions
      */
     public function createActionDefinitionsList(array $actions): ActionDefinitionList
     {
@@ -40,7 +40,7 @@ class ActionDefinitionsListFactory
     }
 
     /**
-     * @param array<string, array{needs: list<string>, continue_on_error: bool, tasks: array<string, array{command: string, continue_on_error: bool, input: string, output: string, directory: string}>}> $jobs
+     * @param array<string, array{needs: list<string>, continue_on_error: bool, tasks: array<string, array{command: string, continue_on_error: bool, inputs: list<string>, output: string, directory: string}>}> $jobs
      *
      * @return array<string, JobDefinition>
      */
@@ -62,7 +62,7 @@ class ActionDefinitionsListFactory
     }
 
     /**
-     * @param array<string, array{command: string, continue_on_error: bool, input: string, output: string, directory: string}> $tasks
+     * @param array<string, array{command: string, continue_on_error: bool, inputs: list<string>, output: string, directory: string}> $tasks
      *
      * @return array<string, TaskDefinition>
      */
@@ -74,7 +74,7 @@ class ActionDefinitionsListFactory
             $taskDefinition = new TaskDefinition($name, $task['command']);
 
             $taskDefinition->setContinueOnError($task['continue_on_error']);
-            $taskDefinition->setInputKey($task['input']);
+            $taskDefinition->setInputKeys($task['inputs']);
             $taskDefinition->setOutputKey($task['output']);
             $taskDefinition->setDirectory($task['directory']);
 

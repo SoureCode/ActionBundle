@@ -28,7 +28,10 @@ return static function (ContainerConfigurator $container) {
         ->set('soure_code.action.storage', MemoryStorage::class)
         ->alias(StorageInterface::class, 'soure_code.action.storage');
 
-    $services->set('soure_code.action.factory.task', TaskFactory::class);
+    $services->set('soure_code.action.factory.task', TaskFactory::class)
+        ->args([
+            service('filesystem'),
+        ]);
 
     $services->set('soure_code.action.factory.job', JobFactory::class)
         ->args([

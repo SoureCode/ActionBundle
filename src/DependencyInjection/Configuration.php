@@ -86,8 +86,9 @@ class Configuration implements ConfigurationInterface
         $tasksChildren->scalarNode('output')
             ->defaultNull();
 
-        $tasksChildren->scalarNode('input')
-            ->defaultNull();
+        $tasksChildren->arrayNode('inputs')
+            ->scalarPrototype()
+            ->defaultValue([]);
 
         $tasksChildren->booleanNode('continue_on_error')
             ->defaultValue(false);
